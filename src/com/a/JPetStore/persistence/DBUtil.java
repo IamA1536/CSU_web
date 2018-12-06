@@ -37,21 +37,21 @@ public class DBUtil {
         connection.close();
     }
 
-    public static void main(String[] args) throws Exception {
-        String categoryId = "BIRDS";
-        String GET_CATEGORY_LIST = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY";
-        String GET_CATEGORY = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY WHERE CATID = '" + categoryId + "'";
-
-        Connection connection = DBUtil.getConnection();
-        System.out.println(connection);
-//        PreparedStatement preparedStatement = connection.prepareStatement(GET_CATEGORY_LIST);
-//        preparedStatement.setString(1, "BIRDS");
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(GET_CATEGORY);
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString(1));
-            System.out.println(resultSet.getString(2));
-            System.out.println(resultSet.getString(3));
-        }
-    }
+//    public static void main(String[] args) throws Exception {
+//        String categoryId = "BIRDS";
+//        String GET_CATEGORY_LIST = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY";
+//        String GET_CATEGORY = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY WHERE CATID = '" + categoryId + "'";
+//
+//        Connection connection = DBUtil.getConnection();
+//        System.out.println(connection);
+////        PreparedStatement preparedStatement = connection.prepareStatement(GET_CATEGORY_LIST);
+////        preparedStatement.setString(1, "BIRDS");
+//        Statement statement = connection.createStatement();
+//        ResultSet resultSet = statement.executeQuery(GET_CATEGORY);
+//        while (resultSet.next()) {
+//            System.out.println(resultSet.getString(1));
+//            System.out.println(resultSet.getString(2));
+//            System.out.println(resultSet.getString(3));
+//        }
+//    }
 }
