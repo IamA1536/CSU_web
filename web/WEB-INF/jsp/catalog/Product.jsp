@@ -20,7 +20,7 @@
         <c:forEach var="item" items="${sessionScope.itemList}">
             <tr>
                 <td>
-                    <a href="#">${item.itemId}</a>
+                    <a href="vitem?itemId=${item.itemId}&productId=${item.product.productId}">${item.itemId}</a>
                 </td>
                 <td>
                         ${item.product.productId}

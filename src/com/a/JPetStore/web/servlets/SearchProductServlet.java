@@ -1,6 +1,5 @@
 package com.a.JPetStore.web.servlets;
 
-import com.a.JPetStore.domain.object.Category;
 import com.a.JPetStore.domain.object.Product;
 import com.a.JPetStore.serivce.CatalogSerivce;
 
@@ -14,33 +13,28 @@ import java.util.List;
 
 /**
  * @author A
- * Created by IamA#1536 on 2018/12/5 17:51
+ * Created by IamA#1536 on 2018/12/7 9:38
  */
-public class VCategoryServlet extends HttpServlet {
-
-    private static final String V_CATEGORY = "/WEB-INF/jsp/catalog/Category.jsp";
-    private String categoryId;
+public class SearchProductServlet extends HttpServlet {
+    private String keyword;
+    private static final String SEARCH = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        categoryId = request.getParameter("categoryId");
+        keyword = request.getParameter("keyword");
         CatalogSerivce service = new CatalogSerivce();
-
         try {
-            Category category = service.getCategory(categoryId);
-            List<Product> productList = service.getProductListByCategory(categoryId);
+            List<Product> productList = service.searchProductList(keyword);
 
             HttpSession session = request.getSession();
-            session.setAttribute("category", category);
             session.setAttribute("productList", productList);
 
-            request.getRequestDispatcher(V_CATEGORY).forward(request, response);
+            request.getRequestDispatcher(SEARCH).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

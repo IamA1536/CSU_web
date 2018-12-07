@@ -1,7 +1,7 @@
 <%@ include file="../common/IncludeTop.jsp" %>
 
 <div id="BackLink">
-    <a href="#">
+    <a href="vproduct?productId=${sessionScope.product.productId}">
         Return to ${sessionScope.product.productId}
     </a>
 </div>
@@ -16,10 +16,15 @@
             <td><b> ${sessionScope.item.itemId} </b></td>
         </tr>
         <tr>
-            <td><b><font size="4"> ${sessionScope.item.attribute1}
-                ${sessionScope.item.attribute2} ${sessionScope.item.attribute3}
-                ${sessionScope.item.attribute4} ${sessionScope.item.attribute5}
-                ${sessionScope.product.name} </font></b></td>
+            <td>
+                <b><font size="4">
+                    ${sessionScope.item.attribute1}
+                    ${sessionScope.item.attribute2} ${sessionScope.item.attribute3}
+                    ${sessionScope.item.attribute4} ${sessionScope.item.attribute5}
+                    ${sessionScope.product.name}
+                </font>
+                </b>
+            </td>
         </tr>
         <tr>
             <td>${sessionScope.product.name}</td>

@@ -21,8 +21,12 @@
         <servlet-class>com.a.JPetStore.web.servlets.VProductServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SreachProductServlet</servlet-name>
-        <servlet-class>com.a.JPetStore.web.servlets.SreachProductServlet</servlet-class>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.SearchProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VItemServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.VItemServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -38,7 +42,11 @@
         <url-pattern>/vproduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SreachProductServlet</servlet-name>
-        <url-pattern>/sreach</url-pattern>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VItemServlet</servlet-name>
+        <url-pattern>/vitem</url-pattern>
     </servlet-mapping>
 </web-app>
