@@ -28,6 +28,18 @@
         <servlet-name>VItemServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.VItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddItemToCartServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.AddItemToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VCartServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.VCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveItemFromCartServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.RemoveItemFromCartServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -48,5 +60,17 @@
     <servlet-mapping>
         <servlet-name>VItemServlet</servlet-name>
         <url-pattern>/vitem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddItemToCartServlet</servlet-name>
+        <url-pattern>/AddItemToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VCartServlet</servlet-name>
+        <url-pattern>/vcart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveItemFromCartServlet</servlet-name>
+        <url-pattern>/removeitemfromcart</url-pattern>
     </servlet-mapping>
 </web-app>

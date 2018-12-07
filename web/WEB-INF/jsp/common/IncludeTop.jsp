@@ -39,7 +39,7 @@
 
     <div id="Menu">
         <div id="MenuContent">
-            <a href="viewCart"><img align="middle" name="img_cart" src="img/cart.gif"/></a>
+            <a href="vcart"><img align="middle" name="img_cart" src="img/cart.gif"/></a>
             <img align="middle" src="img/separator.gif"/>
             <a href="../account/SignonForm.html">Sign In</a>
             <a href="#">Sign Out</a>

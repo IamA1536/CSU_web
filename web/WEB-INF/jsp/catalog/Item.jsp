@@ -30,11 +30,14 @@
             <td>${sessionScope.product.name}</td>
         </tr>
         <tr>
-            <td><c:if test="${sessionScope.item.quantity <= 0}">
-                Back ordered.
-            </c:if> <c:if test="${sessionScope.item.quantity > 0}">
-                ${sessionScope.item.quantity} in stock.
-            </c:if></td>
+            <td>
+                <c:if test="${sessionScope.item.quantity <= 0}">
+                    Back ordered.
+                </c:if>
+                <c:if test="${sessionScope.item.quantity > 0}">
+                    ${sessionScope.item.quantity} in stock.
+                </c:if>
+            </td>
         </tr>
         <tr>
             <td><fmt:formatNumber value="${sessionScope.item.listPrice}"
@@ -43,7 +46,7 @@
 
         <tr>
             <td>
-                <a class="Button" href="#">
+                <a class="Button" href="AddItemToCart?workingItemId=${sessionScope.item.itemId}">
                     Add to Cart
                 </a>
             </td>
