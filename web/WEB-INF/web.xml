@@ -7,7 +7,7 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
-    
+
     <servlet>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.MainServlet</servlet-class>
@@ -15,6 +15,14 @@
     <servlet>
         <servlet-name>CategoryServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.VCategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VProductServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.VProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SreachProductServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.SreachProductServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -24,5 +32,13 @@
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
         <url-pattern>/vcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VProductServlet</servlet-name>
+        <url-pattern>/vproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SreachProductServlet</servlet-name>
+        <url-pattern>/sreach</url-pattern>
     </servlet-mapping>
 </web-app>

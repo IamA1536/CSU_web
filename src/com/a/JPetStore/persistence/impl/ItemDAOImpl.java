@@ -6,7 +6,6 @@ import com.a.JPetStore.persistence.DBUtil;
 import com.a.JPetStore.persistence.ItemDAO;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class ItemDAOImpl implements ItemDAO {
         Integer increment = (Integer) param.get(itemId);
         String str = "UPDATE INVENTORY SET QTY = QTY - " + increment + " WHERE ITEMID = '" + itemId + "'";
         Statement statement = connection.createStatement();
-        statement.executeQuery(str)
+        statement.executeQuery(str);
         DBUtil.closeStatement(statement);
         DBUtil.closeConnection(connection);
 
@@ -91,7 +90,34 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public Item getItem(String itemId) {
-        return null;
+    public Item getItem(String itemId) throws Exception {
+        Item item = null;
+        Connection connection = DBUtil.getConnection();
+        String str = getItem+"'"+itemId+"'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(str);
+        if (resultSet.next()){
+            item = new Item();
+            item.setItemId(resultSet.getString(1));
+            item.setListPrice(resultSet.getBigDecimal(2));
+            item.setUnitCost(resultSet.getBigDecimal(3));
+            item.setSupplierId(resultSet.getInt(4));
+            Product product = new Product();
+            product.setProductId(resultSet.getString(5));
+            product.setName(resultSet.getString(6));
+            product.setDescription(resultSet.getString(7));
+            product.setCategoryId(resultSet.getString(8));
+            item.setStatus(resultSet.getString(9));
+            item.setAttribute1(resultSet.getString(10));
+            item.setAttribute2(resultSet.getString(11));
+            item.setAttribute3(resultSet.getString(12));
+            item.setAttribute4(resultSet.getString(13));
+            item.setAttribute5(resultSet.getString(14));
+            item.setQuantity(resultSet.getInt(15));
+        }
+        DBUtil.closeResultSet(resultSet);
+        DBUtil.closeStatement(statement);
+        DBUtil.closeConnection(connection);
+        return item;
     }
 }

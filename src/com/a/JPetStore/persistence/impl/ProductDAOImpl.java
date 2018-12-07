@@ -5,7 +5,6 @@ import com.a.JPetStore.persistence.DBUtil;
 import com.a.JPetStore.persistence.ProductDAO;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -20,8 +19,11 @@ public class ProductDAOImpl implements ProductDAO {
     //    private static final String GET_PRODUCT_LIST_BY_CATEGORY = "SELECT PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId FROM PRODUCT WHERE CATEGORY = #{value}";
     private static final String GET_PRODUCT_LIST_BY_CATEGORY = "SELECT PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId FROM PRODUCT WHERE CATEGORY = ";
 
-    private static final String GET_PRODUCT = "SELECT PRODUCTID,NAME,DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE PRODUCTID = #{productId}";
-    private static final String SREACH_PRODUCT_LIST_STRING = "select PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId from PRODUCT WHERE lower(name) like #{value}";
+    //    private static final String GET_PRODUCT = "SELECT PRODUCTID,NAME,DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE PRODUCTID = #{productId}";
+    private static final String GET_PRODUCT = "SELECT PRODUCTID,NAME,DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE PRODUCTID = ";
+
+    //    private static final String SREACH_PRODUCT_LIST_STRING = "select PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId from PRODUCT WHERE lower(name) like #{value}";
+    private static final String SREACH_PRODUCT_LIST_STRING = "select PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId from PRODUCT WHERE lower(name) like ";
 
     @Override
     public List<Product> getProductListByCategory(String categoryId) throws Exception {
@@ -53,9 +55,12 @@ public class ProductDAOImpl implements ProductDAO {
     public Product getProduct(String productId) throws Exception {
         Product product = null;
         Connection connection = DBUtil.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT);
-        preparedStatement.setString(1, productId);
-        ResultSet resultSet = preparedStatement.executeQuery();
+//        PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT);
+//        preparedStatement.setString(1, productId);
+//        ResultSet resultSet = preparedStatement.executeQuery();
+        String str = GET_PRODUCT + "'" + productId + "'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(str);
         if (resultSet.next()) {
             product = new Product();
             product.setProductId(resultSet.getString(1));
@@ -65,7 +70,8 @@ public class ProductDAOImpl implements ProductDAO {
 
         }
         DBUtil.closeResultSet(resultSet);
-        DBUtil.closePreparedstatement(preparedStatement);
+//        DBUtil.closePreparedstatement(preparedStatement);
+        DBUtil.closeStatement(statement);
         DBUtil.closeConnection(connection);
         return product;
     }
@@ -75,9 +81,12 @@ public class ProductDAOImpl implements ProductDAO {
     public List<Product> searchProductList(String keywords) throws Exception {
         List<Product> productList = new ArrayList<Product>();
         Connection connection = DBUtil.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SREACH_PRODUCT_LIST_STRING);
-        preparedStatement.setString(1, keywords);
-        ResultSet resultSet = preparedStatement.executeQuery();
+//        PreparedStatement preparedStatement = connection.prepareStatement(SREACH_PRODUCT_LIST_STRING);
+//        preparedStatement.setString(1, keywords);
+//        ResultSet resultSet = preparedStatement.executeQuery();
+        String str = SREACH_PRODUCT_LIST_STRING + "'" + keywords + "'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(str);
         while (resultSet.next()) {
             Product product = new Product();
             product.setProductId(resultSet.getString(1));
@@ -87,7 +96,8 @@ public class ProductDAOImpl implements ProductDAO {
             productList.add(product);
         }
         DBUtil.closeResultSet(resultSet);
-        DBUtil.closePreparedstatement(preparedStatement);
+//        DBUtil.closePreparedstatement(preparedStatement);
+        DBUtil.closeStatement(statement);
         DBUtil.closeConnection(connection);
         return productList;
     }

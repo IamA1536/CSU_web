@@ -16,6 +16,6 @@ public interface ItemDAO {
 
     List<Item> getItemListByProduct(String productId) throws Exception;
 
-    Item getItem(String itemId);
+    Item getItem(String itemId) throws Exception;
 
 }

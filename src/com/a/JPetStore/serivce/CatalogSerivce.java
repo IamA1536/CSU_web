@@ -1,10 +1,13 @@
 package com.a.JPetStore.serivce;
 
 import com.a.JPetStore.domain.object.Category;
+import com.a.JPetStore.domain.object.Item;
 import com.a.JPetStore.domain.object.Product;
 import com.a.JPetStore.persistence.CategoryDAO;
+import com.a.JPetStore.persistence.ItemDAO;
 import com.a.JPetStore.persistence.ProductDAO;
 import com.a.JPetStore.persistence.impl.CategoryDAOImpl;
+import com.a.JPetStore.persistence.impl.ItemDAOImpl;
 import com.a.JPetStore.persistence.impl.ProductDAOImpl;
 
 import java.util.List;
@@ -17,11 +20,12 @@ public class CatalogSerivce {
 
     private CategoryDAO categoryDAO;
     private ProductDAO productDAO;
+    private ItemDAO itemDAO;
 
     public CatalogSerivce(){
         categoryDAO = new CategoryDAOImpl();
         productDAO = new ProductDAOImpl();
-
+        itemDAO = new ItemDAOImpl();
     }
 
     public List<Category> getCategoryList() throws Exception {
@@ -44,16 +48,16 @@ public class CatalogSerivce {
     public List<Product> searchProductList(String keyword) throws Exception {
         return productDAO.searchProductList("%" + keyword.toLowerCase() + "%");
     }
-//
-//    public List<Item> getItemListByProduct(String productId) {
-//        return itemMapper.getItemListByProduct(productId);
-//    }
-//
-//    public Item getItem(String itemId) {
-//        return itemMapper.getItem(itemId);
-//    }
-//
-//    public boolean isItemInStock(String itemId) {
-//        return itemMapper.getInventoryQuantity(itemId) > 0;
-//    }
+
+    public List<Item> getItemListByProduct(String productId) throws Exception {
+        return itemDAO.getItemListByProduct(productId);
+    }
+
+    public Item getItem(String itemId) throws Exception {
+        return itemDAO.getItem(itemId);
+    }
+
+    public boolean isItemInStock(String itemId) throws Exception {
+        return itemDAO.getInventoryQuantity(itemId) > 0;
+    }
 }
