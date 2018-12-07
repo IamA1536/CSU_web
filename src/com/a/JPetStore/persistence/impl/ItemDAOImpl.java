@@ -6,6 +6,7 @@ import com.a.JPetStore.persistence.DBUtil;
 import com.a.JPetStore.persistence.ItemDAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -17,25 +18,28 @@ import java.util.Map;
  * Created by IamA#1536 on 2018/12/6 23:00
  */
 public class ItemDAOImpl implements ItemDAO {
-    //    private static final String getItemListByProduct = "SELECT I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\",NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5 FROM ITEM I, PRODUCT P WHERE P.PRODUCTID = I.PRODUCTID AND I.PRODUCTID = #{value}";
-    private static final String getItemListByProduct = "SELECT I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\",NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5 FROM ITEM I, PRODUCT P WHERE P.PRODUCTID = I.PRODUCTID AND I.PRODUCTID = ";
-    //    private static final String getItem = "select I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\", NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5, QTY AS quantity from ITEM I, INVENTORY V, PRODUCT P where P.PRODUCTID = I.PRODUCTID  and I.ITEMID = V.ITEMID and I.ITEMID = #{value}";
-    private static final String getItem = "select I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\", NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5, QTY AS quantity from ITEM I, INVENTORY V, PRODUCT P where P.PRODUCTID = I.PRODUCTID  and I.ITEMID = V.ITEMID and I.ITEMID = ";
-    //    private static final String getInventoryQuantity = "SELECT QTY AS value FROM INVENTORY WHERE ITEMID = #{itemId}";
-    private static final String getInventoryQuantity = "SELECT QTY AS value FROM INVENTORY WHERE ITEMID = ";
-    //    private static final String updateInventoryQuantity = "UPDATE INVENTORY SET QTY = QTY - #{increment} WHERE ITEMID = #{itemId}";
-    private static final String updateInventoryQuantity = "UPDATE INVENTORY SET QTY = QTY - #{increment} WHERE ITEMID = #{itemId}";
+    private static final String getItemListByProduct = "SELECT I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\",NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5 FROM ITEM I, PRODUCT P WHERE P.PRODUCTID = I.PRODUCTID AND I.PRODUCTID = ?";
+    //    private static final String getItemListByProduct = "SELECT I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\",NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5 FROM ITEM I, PRODUCT P WHERE P.PRODUCTID = I.PRODUCTID AND I.PRODUCTID = ";
+    private static final String getItem = "select I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\", NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5, QTY AS quantity from ITEM I, INVENTORY V, PRODUCT P where P.PRODUCTID = I.PRODUCTID  and I.ITEMID = V.ITEMID and I.ITEMID = ?";
+    //    private static final String getItem = "select I.ITEMID, LISTPRICE, UNITCOST, SUPPLIER AS supplierId, I.PRODUCTID AS \"product.productId\", NAME AS \"product.name\", DESCN AS \"product.description\", CATEGORY AS \"product.categoryId\", STATUS, ATTR1 AS attribute1, ATTR2 AS attribute2, ATTR3 AS attribute3, ATTR4 AS attribute4, ATTR5 AS attribute5, QTY AS quantity from ITEM I, INVENTORY V, PRODUCT P where P.PRODUCTID = I.PRODUCTID  and I.ITEMID = V.ITEMID and I.ITEMID = ";
+    private static final String getInventoryQuantity = "SELECT QTY AS value FROM INVENTORY WHERE ITEMID = ?";
+    //    private static final String getInventoryQuantity = "SELECT QTY AS value FROM INVENTORY WHERE ITEMID = ";
+    private static final String updateInventoryQuantity = "UPDATE INVENTORY SET QTY = QTY - ? WHERE ITEMID = ?";
+//    private static final String updateInventoryQuantity = "UPDATE INVENTORY SET QTY = QTY - #{increment} WHERE ITEMID = #{itemId}";
 
     @Override
     public void updateInventoryQuantity(Map<String, Object> param) throws Exception {
         Connection connection = DBUtil.getConnection();
-//        PreparedStatement preparedStatement = connection.prepareStatement(updateInventoryQuantity);
+        PreparedStatement preparedStatement = connection.prepareStatement(updateInventoryQuantity);
         String itemId = param.keySet().iterator().next();
         Integer increment = (Integer) param.get(itemId);
-        String str = "UPDATE INVENTORY SET QTY = QTY - " + increment + " WHERE ITEMID = '" + itemId + "'";
-        Statement statement = connection.createStatement();
-        statement.executeQuery(str);
-        DBUtil.closeStatement(statement);
+//        String str = "UPDATE INVENTORY SET QTY = QTY - " + increment + " WHERE ITEMID = '" + itemId + "'";
+//        Statement statement = connection.createStatement();
+//        statement.executeQuery(str);
+        preparedStatement.setInt(1, increment);
+        preparedStatement.setString(2, itemId);
+//        DBUtil.closeStatement(statement);
+        DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
 
     }
@@ -45,13 +49,17 @@ public class ItemDAOImpl implements ItemDAO {
         int result = -1;
         Connection connection = DBUtil.getConnection();
         Statement statement = connection.createStatement();
-        String str = getInventoryQuantity + "'" + itemId + "'";
-        ResultSet resultSet = statement.executeQuery(str);
+        PreparedStatement preparedStatement = connection.prepareStatement(getInventoryQuantity);
+        preparedStatement.setString(1, itemId);
+//        String str = getInventoryQuantity + "'" + itemId + "'";
+//        ResultSet resultSet = statement.executeQuery(str);
+        ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next())
             result = resultSet.getInt(1);
 
         DBUtil.closeResultSet(resultSet);
-        DBUtil.closeStatement(statement);
+//        DBUtil.closeStatement(statement);
+        DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
         return result;
     }
@@ -60,10 +68,13 @@ public class ItemDAOImpl implements ItemDAO {
     public List<Item> getItemListByProduct(String productId) throws Exception {
         List<Item> itemList = new ArrayList<Item>();
         Connection connection = DBUtil.getConnection();
-        Statement statement = connection.createStatement();
-        String str = getItemListByProduct + "'" + productId + "'";
-        ResultSet resultSet = statement.executeQuery(str);
-        while (resultSet.next()){
+//        Statement statement = connection.createStatement();
+//        String str = getItemListByProduct + "'" + productId + "'";
+//        ResultSet resultSet = statement.executeQuery(str);
+        PreparedStatement preparedStatement = connection.prepareStatement(getItemListByProduct);
+        preparedStatement.setString(1, productId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
             Item item = new Item();
             item.setItemId(resultSet.getString(1));
             item.setListPrice(resultSet.getBigDecimal(2));
@@ -84,7 +95,8 @@ public class ItemDAOImpl implements ItemDAO {
             itemList.add(item);
         }
         DBUtil.closeResultSet(resultSet);
-        DBUtil.closeStatement(statement);
+//        DBUtil.closeStatement(statement);
+        DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
         return itemList;
     }
@@ -93,10 +105,13 @@ public class ItemDAOImpl implements ItemDAO {
     public Item getItem(String itemId) throws Exception {
         Item item = null;
         Connection connection = DBUtil.getConnection();
-        String str = getItem+"'"+itemId+"'";
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(str);
-        if (resultSet.next()){
+        PreparedStatement preparedStatement = connection.prepareStatement(getItem);
+        preparedStatement.setString(1, itemId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+//        String str = getItem + "'" + itemId + "'";
+//        Statement statement = connection.createStatement();
+//        ResultSet resultSet = statement.executeQuery(str);
+        if (resultSet.next()) {
             item = new Item();
             item.setItemId(resultSet.getString(1));
             item.setListPrice(resultSet.getBigDecimal(2));
@@ -116,7 +131,8 @@ public class ItemDAOImpl implements ItemDAO {
             item.setQuantity(resultSet.getInt(15));
         }
         DBUtil.closeResultSet(resultSet);
-        DBUtil.closeStatement(statement);
+//        DBUtil.closeStatement(statement);
+        DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
         return item;
     }

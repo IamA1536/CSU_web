@@ -7,7 +7,6 @@ import com.a.JPetStore.persistence.DBUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +16,8 @@ import java.util.List;
  */
 public class CategoryDAOImpl implements CategoryDAO {
     private static final String GET_CATEGORY_LIST = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY";
-    //    private static final String GET_CATEGORY = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY WHERE CATID = #{categoryId}";
-    private static final String GET_CATEGORY = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY WHERE CATID = ";
+    private static final String GET_CATEGORY = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY WHERE CATID = ?";
+//    private static final String GET_CATEGORY = "SELECT CATID AS categoryId,NAME,DESCN AS description FROM CATEGORY WHERE CATID = ";
 
     @Override
     public List<Category> getCategoryList() throws Exception {
@@ -39,18 +38,17 @@ public class CategoryDAOImpl implements CategoryDAO {
         return categoryList;
     }
 
-    @SuppressWarnings("JpaQueryApiInspection")
     @Override
     public Category getCategory(String categoryId) throws Exception {
         Category category = null;
         Connection connection = DBUtil.getConnection();
 
-//        PreparedStatement preparedStatement = connection.prepareStatement(GET_CATEGORY);
-//        preparedStatement.setString(1, categoryId);
-//        ResultSet resultSet = preparedStatement.executeQuery();
-        String str = GET_CATEGORY + "'" + categoryId + "'";
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(str);
+        PreparedStatement preparedStatement = connection.prepareStatement(GET_CATEGORY);
+        preparedStatement.setString(1, categoryId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+//        String str = GET_CATEGORY + "'" + categoryId + "'";
+//        Statement statement = connection.createStatement();
+//        ResultSet resultSet = statement.executeQuery(str);
         if (resultSet.next()) {
             category = new Category();
             category.setCategoryId(resultSet.getString(1));
@@ -59,8 +57,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 
         }
         DBUtil.closeResultSet(resultSet);
-//        DBUtil.closePreparedstatement(preparedStatement);
-        DBUtil.closeStatement(statement);
+        DBUtil.closePreparedstatement(preparedStatement);
+//        DBUtil.closeStatement(statement);
         DBUtil.closeConnection(connection);
         return category;
     }
