@@ -40,6 +40,10 @@
         <servlet-name>RemoveItemFromCartServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.RemoveItemFromCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCartQuantitiesServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.UpdateCartQuantitiesServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -72,5 +76,9 @@
     <servlet-mapping>
         <servlet-name>RemoveItemFromCartServlet</servlet-name>
         <url-pattern>/removeitemfromcart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCartQuantitiesServlet</servlet-name>
+        <url-pattern>/updatecartquantities</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -11,7 +11,7 @@
     <div id="Cart">
 
         <h2>Shopping Cart</h2>
-        <form action="#" method="post">
+        <form action="updatecartquantities" method="post">
             <table>
                 <tr>
                     <th><b>Item ID</b></th>
@@ -57,16 +57,18 @@
                             <fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00"/>
                         </td>
                         <td>
-                            <a class="Button" href="#?cartItem=${cartItem.item.itemId}">
+                            <a class="Button" href="removeitemfromcart?workingItemId=${cartItem.item.itemId}">
                                 Remove
                             </a>
                         </td>
                     </tr>
                 </c:forEach>
                 <tr>
-                    <td colspan="7">Sub Total:<fmt:formatNumber value="${sessionScope.cart.subTotal}"
-                                                                pattern="$#,##0.00"/>
-                        <input type="submit" value="Update Cart"/>
+                    <td colspan="7">Sub Total:<fmt:formatNumber value="${sessionScope.cart.subTotal}" pattern="$#,##0.00"/>
+                        <%--<input type="submit" value="Update Cart"/>--%>
+                        <a class="Button" href="updatecartquantities?cart=${sessionScope.cart}">
+                            <input type="submit" value="Update Cart"/>
+                        </a>
                     </td>
                     <td>&nbsp;</td>
                 </tr>

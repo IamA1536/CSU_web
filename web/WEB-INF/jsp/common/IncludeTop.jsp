@@ -46,7 +46,7 @@
             <img align="middle" src="img/separator.gif"/>
             <a href="#">My Account</a>
             <img align="middle" src="img/separator.gif"/>
-            <a href="../../../help.html">?</a>
+            <a href="/help.html">?</a>
         </div>
     </div>
 
