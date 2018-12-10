@@ -34,7 +34,7 @@
                     <tr>
                         <td>
 
-                            <a href="vitem?itemId=${cartItem.item.itemId}">
+                            <a href="vitem?itemId=${cartItem.item.itemId}&account=${sessionScope.account}">
                                     ${cartItem.item.itemId}
                             </a>
                         </td>
@@ -57,16 +57,19 @@
                             <fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00"/>
                         </td>
                         <td>
-                            <a class="Button" href="removeitemfromcart?workingItemId=${cartItem.item.itemId}">
+                            <a class="Button"
+                               href="removeitemfromcart?workingItemId=${cartItem.item.itemId}&account=${sessionScope.account}">
                                 Remove
                             </a>
                         </td>
                     </tr>
                 </c:forEach>
                 <tr>
-                    <td colspan="7">Sub Total:<fmt:formatNumber value="${sessionScope.cart.subTotal}" pattern="$#,##0.00"/>
+                    <td colspan="7">Sub Total:<fmt:formatNumber value="${sessionScope.cart.subTotal}"
+                                                                pattern="$#,##0.00"/>
                         <%--<input type="submit" value="Update Cart"/>--%>
-                        <a class="Button" href="updatecartquantities?cart=${sessionScope.cart}">
+                        <a class="Button"
+                           href="updatecartquantities?cart=${sessionScope.cart}&account=${sessionScope.account}">
                             <input type="submit" value="Update Cart"/>
                         </a>
                     </td>
@@ -76,8 +79,7 @@
         </form>
 
         <c:if test="${sessionScope.cart.numberOfItems > 0}">
-
-            <a class="Button" ref="#">
+            <a class="Button" href="neworderform?account=${sessionScope.account}">
                 Proceed to Checkout
             </a>
         </c:if>

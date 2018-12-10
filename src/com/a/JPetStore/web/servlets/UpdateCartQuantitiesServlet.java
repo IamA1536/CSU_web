@@ -1,5 +1,6 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.carts.Cart;
 import com.a.JPetStore.domain.carts.CartItem;
 
@@ -20,6 +21,7 @@ public class UpdateCartQuantitiesServlet extends HttpServlet {
     private static final String V_CART = "/WEB-INF/jsp/cart/Cart.jsp";
 
     private Cart cart;
+    private Account account;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -28,14 +30,14 @@ public class UpdateCartQuantitiesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         cart = (Cart) session.getAttribute("cart");
+        account = (Account) session.getAttribute("account");
+        session.setAttribute("account", account);
 
         Iterator<CartItem> cartItemIterator = cart.getAllCartItems();
 
         while (cartItemIterator.hasNext()) {
             CartItem cartItem = (CartItem) cartItemIterator.next();
             String itemId = cartItem.getItem().getItemId();
-            System.out.println(itemId);
-            System.out.println(request.getParameter(itemId));
             int quantity = Integer.parseInt((String) request.getParameter(itemId));
             if (quantity > 0)
                 cart.setQuantityByItemId(itemId, quantity);

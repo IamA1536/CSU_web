@@ -1,5 +1,6 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.object.Item;
 import com.a.JPetStore.domain.object.Product;
 import com.a.JPetStore.serivce.CatalogSerivce;
@@ -19,6 +20,7 @@ public class VItemServlet extends HttpServlet {
     private static final String V_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
     private String itemId;
     private String productId;
+    private Account account;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -27,7 +29,6 @@ public class VItemServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         itemId = request.getParameter("itemId");
         productId = request.getParameter("productId");
-//        System.out.println(itemId + " " + productId);
         CatalogSerivce serivce = new CatalogSerivce();
         try {
             Item item = serivce.getItem(itemId);
@@ -36,6 +37,10 @@ public class VItemServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("item", item);
             session.setAttribute("product", product);
+
+            account = (Account) session.getAttribute("account");
+            session.setAttribute("account", account);
+
 
             request.getRequestDispatcher(V_ITEM).forward(request, response);
 

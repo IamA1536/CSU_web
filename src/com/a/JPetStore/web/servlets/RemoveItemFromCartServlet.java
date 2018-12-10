@@ -1,5 +1,6 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.carts.Cart;
 import com.a.JPetStore.domain.object.Item;
 
@@ -22,6 +23,7 @@ public class RemoveItemFromCartServlet extends HttpServlet {
 
     private String workingItemId;
     private Cart cart;
+    private Account account;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -32,11 +34,14 @@ public class RemoveItemFromCartServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         cart = (Cart) session.getAttribute("cart");
+        account = (Account) session.getAttribute("account");
+        session.setAttribute("account", account);
         Item item = cart.removeItemById(workingItemId);
         if (item == null) {
             session.setAttribute("message", "Attempted to remove null CartItem from Cart.");
             request.getRequestDispatcher(ERROR).forward(request, response);
         } else {
+
             request.getRequestDispatcher(V_CART).forward(request, response);
         }
     }

@@ -1,5 +1,6 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.carts.Cart;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import java.io.IOException;
 public class VCartServlet extends HttpServlet {
 
     private static final String V_CART = "/WEB-INF/jsp/cart/Cart.jsp";
+    private Account account;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,6 +28,8 @@ public class VCartServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
+        account = (Account) session.getAttribute("account");
+        session.setAttribute("account", account);
 
         if (cart == null) {
             cart = new Cart();

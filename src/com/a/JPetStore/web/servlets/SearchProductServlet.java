@@ -1,5 +1,6 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.object.Product;
 import com.a.JPetStore.serivce.CatalogSerivce;
 
@@ -17,6 +18,7 @@ import java.util.List;
  */
 public class SearchProductServlet extends HttpServlet {
     private String keyword;
+    private Account account;
     private static final String SEARCH = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,10 +28,13 @@ public class SearchProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         keyword = request.getParameter("keyword");
         CatalogSerivce service = new CatalogSerivce();
+        HttpSession session = request.getSession();
+        account = (Account) session.getAttribute("account");
+        session.setAttribute("account", account);
         try {
             List<Product> productList = service.searchProductList(keyword);
 
-            HttpSession session = request.getSession();
+
             session.setAttribute("productList", productList);
 
             request.getRequestDispatcher(SEARCH).forward(request, response);

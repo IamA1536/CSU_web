@@ -1,5 +1,6 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.carts.Cart;
 import com.a.JPetStore.domain.object.Item;
 import com.a.JPetStore.serivce.CatalogSerivce;
@@ -24,6 +25,7 @@ public class AddItemToCartServlet extends HttpServlet {
 
     private CatalogSerivce catalogSerivce;
 
+    private Account account;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -32,8 +34,11 @@ public class AddItemToCartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         workingItemId = request.getParameter("workingItemId");
 
+
         HttpSession session = request.getSession();
         cart = (Cart) session.getAttribute("cart");
+        account = (Account) session.getAttribute("account");
+
 
         if (cart == null)
             cart = new Cart();
@@ -52,7 +57,7 @@ public class AddItemToCartServlet extends HttpServlet {
             }
 
             session.setAttribute("cart", cart);
-
+            session.setAttribute("account", account);
             request.getRequestDispatcher(V_CART).forward(request, response);
         }
     }

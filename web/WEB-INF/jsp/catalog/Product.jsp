@@ -2,7 +2,8 @@
 
 
 <div id="BackLink">
-    <a href="vcategory?categoryId = ${sessionScope.product.categoryId}">Return to ${sessionScope.product.categoryId}</a>
+    <a href="vcategory?categoryId = ${sessionScope.product.categoryId}&account=${sessionScope.account}">Return
+        to ${sessionScope.product.categoryId}</a>
 </div>
 
 <div id="Catalog">
@@ -20,7 +21,7 @@
         <c:forEach var="item" items="${sessionScope.itemList}">
             <tr>
                 <td>
-                    <a href="vitem?itemId=${item.itemId}&productId=${item.product.productId}">${item.itemId}</a>
+                    <a href="vitem?itemId=${item.itemId}&productId=${item.product.productId}&account=${sessionScope.account}">${item.itemId}</a>
                 </td>
                 <td>
                         ${item.product.productId}
@@ -32,7 +33,8 @@
                                       pattern="$#,##0.00"/>
                 </td>
                 <td>
-                    <a class="Button" href="AddItemToCart?workingItemId=${item.itemId}">Add to Cart</a>
+                    <a class="Button" href="AddItemToCart?workingItemId=${item.itemId}&account=${sessionScope.account}">Add
+                        to Cart</a>
                 </td>
             </tr>
         </c:forEach>

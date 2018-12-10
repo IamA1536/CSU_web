@@ -39,14 +39,20 @@
 
     <div id="Menu">
         <div id="MenuContent">
-            <a href="vcart"><img align="middle" name="img_cart" src="img/cart.gif"/></a>
+            <a href="vcart&account=${sessionScope.account}"><img align="middle" name="img_cart" src="img/cart.gif"/></a>
             <img align="middle" src="img/separator.gif"/>
-            <a href="../account/SignonForm.html">Sign In</a>
-            <a href="#">Sign Out</a>
+
+            <c:if test="${sessionScope.account == null}">
+                <a href="signonform">Sign In</a>
+            </c:if>
+            <c:if test="${sessionScope.account != null}">
+                <a href="#">Sign Out</a>
+                <img align="middle" src="img/separator.gif"/>
+                <a href="editaccountform?account=${sessionScope.account}">${sessionScope.account.username}'s
+                    account</a>
+            </c:if>
             <img align="middle" src="img/separator.gif"/>
-            <a href="#">My Account</a>
-            <img align="middle" src="img/separator.gif"/>
-            <a href="/help.html">?</a>
+            <a href="help.html">?</a>
         </div>
     </div>
 
@@ -60,15 +66,16 @@
     </div>
 
     <div id="QuickLinks">
-        <a href="vcategory?categoryId=FISH"><img src="img/sm_fish.gif"/></a>
+        <a href="vcategory?categoryId=FISH&account=${sessionScope.account}"><img src="img/sm_fish.gif"/></a>
         <img src="img/separator.gif"/>
-        <a href="vcategory?categoryId=DOGS"><img src="img/sm_dogs.gif"/></a>
+        <a href="vcategory?categoryId=DOGS&account=${sessionScope.account}"><img src="img/sm_dogs.gif"/></a>
         <img src="img/separator.gif"/>
-        <a href="vcategory?categoryId=REPTILES"><img src="img/sm_reptiles.gif"/></a>
+        <a href="vcategory?categoryId=REPTILES&account=${sessionScope.account}"><img src="img/sm_reptiles.gif"/></a>
         <img src="img/separator.gif"/>
-        <a href="vcategory?categoryId=CATS"><img src="img/sm_cats.gif"/></a>
+        <a href="vcategory?categoryId=CATS&account=${sessionScope.account}"><img src="img/sm_cats.gif"/></a>
         <img src="img/separator.gif"/>
-        <a href="vcategory?categoryId=BIRDS"><img src="img/sm_birds.gif"/></a>
+        <a href="vcategory?categoryId=BIRDS&account=${sessionScope.account}"><img src="img/sm_birds.gif"/></a>
+
     </div>
 
 </div>

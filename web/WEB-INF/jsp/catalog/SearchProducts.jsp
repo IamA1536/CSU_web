@@ -16,12 +16,12 @@
         <c:forEach var="product" items="${sessionScope.productList}">
             <tr>
                 <td>
-                    <a href="vproduct?productId=${product.productId}">
+                    <a href="vproduct?productId=${product.productId}&account=${sessionScope.account}">
                             ${product.description}
                     </a>
                 </td>
                 <td>
-                    <a href="vproduct?productId=${product.productId}">
+                    <a href="vproduct?productId=${product.productId}&account=${sessionScope.account}">
                         <font color="BLACK"> ${product.productId} </font>
                     </a>
                 </td>

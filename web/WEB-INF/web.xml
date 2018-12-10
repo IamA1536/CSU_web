@@ -44,6 +44,18 @@
         <servlet-name>UpdateCartQuantitiesServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.UpdateCartQuantitiesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignonFormServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.SignonFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.NewOrderFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAccountFormServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.EditAccountFormServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -80,5 +92,17 @@
     <servlet-mapping>
         <servlet-name>UpdateCartQuantitiesServlet</servlet-name>
         <url-pattern>/updatecartquantities</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignonFormServlet</servlet-name>
+        <url-pattern>/signonform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <url-pattern>/neworderform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAccountFormServlet</servlet-name>
+        <url-pattern>/editaccountform</url-pattern>
     </servlet-mapping>
 </web-app>

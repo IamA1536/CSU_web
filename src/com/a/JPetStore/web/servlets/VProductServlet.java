@@ -1,5 +1,6 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.object.Item;
 import com.a.JPetStore.domain.object.Product;
 import com.a.JPetStore.serivce.CatalogSerivce;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 public class VProductServlet extends HttpServlet {
     private String productId;
+    private Account account;
     private static final String V_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
 
 
@@ -35,6 +37,9 @@ public class VProductServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("product", product);
             session.setAttribute("itemList", itemList);
+
+            account = (Account) session.getAttribute("account");
+            session.setAttribute("account", account);
 
             request.getRequestDispatcher(V_PRODUCT).forward(request, response);
         } catch (Exception e) {

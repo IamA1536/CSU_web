@@ -1,7 +1,7 @@
 <%@ include file="../common/IncludeTop.jsp" %>
 
 <div id="BackLink">
-    <a href="vproduct?productId=${sessionScope.product.productId}">
+    <a href="vproduct?productId=${sessionScope.product.productId}&account=${sessionScope.account}">
         Return to ${sessionScope.product.productId}
     </a>
 </div>
@@ -46,7 +46,7 @@
 
         <tr>
             <td>
-                <a class="Button" href="AddItemToCart?workingItemId=${sessionScope.item.itemId}">
+                <a class="Button" href="AddItemToCart?workingItemId=${sessionScope.item.itemId}&account=${sessionScope.account}">
                     Add to Cart
                 </a>
             </td>
