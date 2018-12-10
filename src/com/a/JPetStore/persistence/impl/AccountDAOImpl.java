@@ -113,9 +113,8 @@ public class AccountDAOImpl implements AccountDAO {
         preparedStatement.setString(11, account.getPhone());
         preparedStatement.setString(12, account.getUsername());
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        preparedStatement.execute();
 
-        DBUtil.closeResultSet(resultSet);
         DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
     }
@@ -128,9 +127,9 @@ public class AccountDAOImpl implements AccountDAO {
         preparedStatement.setString(2, account.getFavouriteCategoryId());
         preparedStatement.setString(3, account.getUsername());
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        preparedStatement.execute();
 
-        DBUtil.closeResultSet(resultSet);
+
         DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
 
@@ -143,9 +142,9 @@ public class AccountDAOImpl implements AccountDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SIGNON);
         preparedStatement.setString(2, account.getUsername());
         preparedStatement.setString(1, account.getPassword());
-        ResultSet resultSet = preparedStatement.executeQuery();
+        preparedStatement.execute();
 
-        DBUtil.closeResultSet(resultSet);
+
         DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
 
@@ -168,9 +167,9 @@ public class AccountDAOImpl implements AccountDAO {
         preparedStatement.setString(11, account.getPhone());
         preparedStatement.setString(12, account.getUsername());
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        preparedStatement.execute();
 
-        DBUtil.closeResultSet(resultSet);
+
         DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
     }
@@ -183,9 +182,8 @@ public class AccountDAOImpl implements AccountDAO {
         preparedStatement.setString(2, account.getFavouriteCategoryId());
         preparedStatement.setString(3, account.getUsername());
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        preparedStatement.execute();
 
-        DBUtil.closeResultSet(resultSet);
         DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
     }
@@ -197,9 +195,8 @@ public class AccountDAOImpl implements AccountDAO {
         preparedStatement.setString(1, account.getPassword());
         preparedStatement.setString(2, account.getUsername());
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        preparedStatement.execute();
 
-        DBUtil.closeResultSet(resultSet);
         DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
 

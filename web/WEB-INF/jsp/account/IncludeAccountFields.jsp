@@ -82,22 +82,22 @@
     <tr>
         <td>Enable MyList</td>
         <td>
-            <c:if test="${sessionScope.account.listOption}">
-                <input type="checkbox" name="${sessionScope.account.listOption}" value="1"/>
+            <c:if test="${sessionScope.account.listOption != null}">
+                <input type="checkbox" name="listoption" value="1"/>
             </c:if>
-            <c:if test="!${sessionScope.account.listOption}">
-                <input type="checkbox" name="${sessionScope.account.listOption}" value="0"/>
+            <c:if test="!${sessionScope.account.listOption == null}">
+                <input type="checkbox" name="listoption" value="0"/>
             </c:if>
         </td>
     </tr>
     <tr>
         <td>Enable MyBanner</td>
         <td>
-            <c:if test="${sessionScope.account.bannerOption}">
-                <input type="checkbox" name="${sessionScope.account.bannerOption}" value="1"/>
+            <c:if test="${sessionScope.account.bannerOption != null}">
+                <input type="checkbox" name="banneroption" value="1"/>
             </c:if>
-            <c:if test="!${sessionScope.account.bannerOption}">
-                <input type="checkbox" name="${sessionScope.account.bannerOption}" value="0"/>
+            <c:if test="!${sessionScope.account.bannerOption == null}">
+                <input type="checkbox" name="banneroption" value="0"/>
             </c:if>
         </td>
     </tr>

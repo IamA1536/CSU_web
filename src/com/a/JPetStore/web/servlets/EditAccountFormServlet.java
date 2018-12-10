@@ -34,25 +34,44 @@ public class EditAccountFormServlet extends HttpServlet {
         session.setAttribute("account", account);
 
         String password = request.getParameter("password");
-        if (password != null){
+        if (password != null) {
             String repeatedPassword = request.getParameter("repeatedPassword");
-            if (!password.equals(repeatedPassword)){
+            if (!password.equals(repeatedPassword)) {
                 String error = "Entered passwords differ!";
-                session.setAttribute("error",error);
+                session.setAttribute("error", error);
                 request.getRequestDispatcher(EDIT_ACCOUNT).forward(request, response);
                 return;
             }
         }
-        account.setFirstName(request.getParameter("firstName"));
-        account.setLastName(request.getParameter("lastName"));
-        account.setEmail(request.getParameter("email"));
-        account.setPhone(request.getParameter("phone"));
-        account.setAddress1(request.getParameter("address1"));
-        account.setAddress2(request.getParameter("address2"));
-        account.setCity(request.getParameter("city"));
-
+        if (request.getParameter("email") != null) {
+            account.setFirstName(request.getParameter("firstName"));
+            account.setLastName(request.getParameter("lastName"));
+            account.setEmail(request.getParameter("email"));
+            account.setPhone(request.getParameter("phone"));
+            account.setAddress1(request.getParameter("address1"));
+            account.setAddress2(request.getParameter("address2"));
+            account.setCity(request.getParameter("city"));
+            account.setState(request.getParameter("state"));
+            account.setZip(request.getParameter("zip"));
+            account.setCountry(request.getParameter("country"));
+            account.setLanguagePreference(request.getParameter("languagePreference"));
+            account.setFavouriteCategoryId(request.getParameter("favouriteCategoryId"));
+//        if (request.getParameter("listoption").equals("1"))
+//            account.setListOption(true);
+//        else account.setListOption(false);
+//        if (request.getParameter("banneroption").equals("1"))
+//            account.setBannerOption(true);
+//        else account.setBannerOption(false);
+        }
         accountService = new AccountService();
 
-        request.getRequestDispatcher(EDIT_ACCOUNT).forward(request, response);
+        try {
+            accountService.updateAccount(account);
+            session.setAttribute("account", account);
+            request.getRequestDispatcher(EDIT_ACCOUNT).forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
