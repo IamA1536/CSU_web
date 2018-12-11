@@ -36,7 +36,7 @@ public class SignonFormServlet extends HttpServlet {
         String password = request.getParameter("password");
         account = (Account) session.getAttribute("account");
         if (username == null || password == null) {
-            request.getRequestDispatcher(SIGNON).forward(request, response);
+                request.getRequestDispatcher(SIGNON).forward(request, response);
         } else {
             try {
                 account = accountService.getAccount(username, password);
@@ -48,7 +48,6 @@ public class SignonFormServlet extends HttpServlet {
                     request.getRequestDispatcher(MAIN).forward(request, response);
                 }
             } catch (Exception e) {
-
                 e.printStackTrace();
             }
         }

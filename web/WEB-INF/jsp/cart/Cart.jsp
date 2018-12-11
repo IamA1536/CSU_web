@@ -69,7 +69,7 @@
                                                                 pattern="$#,##0.00"/>
                         <%--<input type="submit" value="Update Cart"/>--%>
                         <a class="Button"
-                           href="updatecartquantities?cart=${sessionScope.cart}&account=${sessionScope.account}">
+                           href="updatecartquantities?cart=${sessionScope.cart}&account=${sessionScope.account}&order=${null}">
                             <input type="submit" value="Update Cart"/>
                         </a>
                     </td>
@@ -79,7 +79,7 @@
         </form>
 
         <c:if test="${sessionScope.cart.numberOfItems > 0}">
-            <a class="Button" href="neworderform?cart=${sessionScope.cart}&account=${sessionScope.account}&">
+            <a class="Button" href="neworderform?cart=${sessionScope.cart}&account=${sessionScope.account}">
                 Proceed to Checkout
             </a>
         </c:if>

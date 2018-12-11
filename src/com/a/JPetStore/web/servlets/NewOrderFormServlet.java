@@ -19,7 +19,6 @@ public class NewOrderFormServlet extends HttpServlet {
 
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
     private static final String NEWOEDERFORM = "/WEB-INF/jsp/order/NewOrderForm.jsp";
-    private static final String CONFIRMORDER = "/WEB-INF/jsp/order/ConfirmOrder.jsp";
     private static final String SHIPPINGFORM = "/WEB-INF/jsp/order/ShippingForm.jsp";
     private static final String VIEWORDER = "/WEB-INF/jsp/order/ViewOrder.jsp";
     private Account account;
@@ -41,18 +40,24 @@ public class NewOrderFormServlet extends HttpServlet {
             String message = "Please sign in first!";
             session.setAttribute("message", message);
             request.getRequestDispatcher(ERROR).forward(request, response);
-        } else {
+        } else if (request.getParameter("creditcard") == null) {
             order = new Order();
             order.initOrder(account, cart);
-
+            session.setAttribute("order", order);
+            request.getRequestDispatcher(NEWOEDERFORM).forward(request, response);
+        } else {
+            order.initOrder(account, cart);
+            order.setCreditCard(request.getParameter("creditcard"));
+            order.setExpiryDate(request.getParameter("expirydate"));
+            order.setCardType(request.getParameter("cardtype"));
+            session.setAttribute("order", order);
             String shippingAddressRequired = request.getParameter("shippingAddressRequired");
             if (shippingAddressRequired != null)
                 request.getRequestDispatcher(SHIPPINGFORM).forward(request, response);
             else
                 request.getRequestDispatcher(VIEWORDER).forward(request, response);
-
-
         }
+
 
     }
 }

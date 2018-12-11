@@ -19,6 +19,7 @@ import java.io.IOException;
 public class AddItemToCartServlet extends HttpServlet {
 
     private static final String V_CART = "/WEB-INF/jsp/cart/Cart.jsp";
+    private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
 
     private String workingItemId;
     private Cart cart;
@@ -33,32 +34,35 @@ public class AddItemToCartServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         workingItemId = request.getParameter("workingItemId");
-
-
         HttpSession session = request.getSession();
         cart = (Cart) session.getAttribute("cart");
         account = (Account) session.getAttribute("account");
-
-
+        session.setAttribute("account", account);
+        if (account == null) {
+            String message = "Please sign in first!";
+            session.setAttribute("message", message);
+            request.getRequestDispatcher(ERROR).forward(request, response);
+            return;
+        }
         if (cart == null)
             cart = new Cart();
-        if (cart.containsItemId(workingItemId))
+        if (cart.containsItemId(workingItemId)) {
             cart.incrementQuantityByItemId(workingItemId);
-        else {
+            session.setAttribute("cart", cart);
+            request.getRequestDispatcher(V_CART).forward(request, response);
+        } else {
             catalogSerivce = new CatalogSerivce();
             try {
                 boolean isInStock = catalogSerivce.isItemInStock(workingItemId);
                 Item item = catalogSerivce.getItem(workingItemId);
-
                 cart.addItem(item, isInStock);
-
+                session.setAttribute("cart", cart);
+                request.getRequestDispatcher(V_CART).forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            session.setAttribute("cart", cart);
-            session.setAttribute("account", account);
-            request.getRequestDispatcher(V_CART).forward(request, response);
+
         }
     }
 }

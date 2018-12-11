@@ -60,6 +60,10 @@
         <servlet-name>VOrderServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.VOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShippingFormServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.ShippingFormServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -112,5 +116,9 @@
     <servlet-mapping>
         <servlet-name>VOrderServlet</servlet-name>
         <url-pattern>/vorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShippingFormServlet</servlet-name>
+        <url-pattern>/shippingform</url-pattern>
     </servlet-mapping>
 </web-app>

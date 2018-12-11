@@ -2,19 +2,17 @@
 
 <div id="Catalog">
     <form action="#" method="post">
-
         <table>
             <tr>
                 <th colspan=2>Shipping Address</th>
             </tr>
-
             <tr>
                 <td>First name:</td>
-                <td><input type="text" name="shiptofirstName"/></td>
+                <td><input type="text" name="shiptofirstName"/>${sessionScope.order.shipToFirstName}</td>
             </tr>
             <tr>
                 <td>Last name:</td>
-                <td><input type="text" name="shiptolastName"/></td>
+                <td><input type="text" name="shiptolastName"/>${sessionScope.order.shipToLastName}</td>
             </tr>
             <tr>
                 <td>Address 1:</td>

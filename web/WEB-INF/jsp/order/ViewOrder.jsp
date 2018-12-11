@@ -119,8 +119,8 @@
                     <c:forEach var="lineItem" items="${sessionScope.order.lineItems}">
                         <tr>
                             <td>
-                                <%--<c:param name="itemId" value="${lineItem.item.itemId}"/>--%>
-                                <a href="vitem?itemId=${lineItem.item.itemId}">
+                                    <%--<c:param name="itemId" value="${lineItem.item.itemId}"/>--%>
+                                <a href="vitem?itemId=${lineItem.item.itemId}&account=${sessionScope.account}&productId= ${lineItem.item.product.productId}">
                                         ${lineItem.item.itemId}
                                 </a>
                             </td>
@@ -131,9 +131,10 @@
                                 ${lineItem.item.attribute4}
                                 ${lineItem.item.attribute5}
                                 ${lineItem.item.product.name}
-                            </c:if> <c:if test="${lineItem.item == null}">
-                                <i>{description unavailable}</i>
-                            </c:if></td>
+                            </c:if>
+                                <c:if test="${lineItem.item == null}">
+                                    <i>{description unavailable}</i>
+                                </c:if></td>
 
                             <td>${lineItem.quantity}</td>
                             <td><fmt:formatNumber value="${lineItem.unitPrice}"

@@ -68,7 +68,6 @@ public class AccountDAOImpl implements AccountDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(GET_ACCOUNT_BY_USERNAME_AND_PASSWORD);
         preparedStatement.setString(1, account.getUsername());
         preparedStatement.setString(2, account.getPassword());
-        System.out.println(account.getUsername() + " " + account.getPassword());
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
