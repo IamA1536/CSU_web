@@ -41,8 +41,12 @@ public class EditAccountFormServlet extends HttpServlet {
                 session.setAttribute("error", error);
                 request.getRequestDispatcher(EDIT_ACCOUNT).forward(request, response);
                 return;
+            } else {
+                account.setPassword(password);
             }
         }
+        String error = "";
+        session.setAttribute("error", error);
         if (request.getParameter("email") != null) {
             account.setFirstName(request.getParameter("firstName"));
             account.setLastName(request.getParameter("lastName"));
@@ -56,12 +60,12 @@ public class EditAccountFormServlet extends HttpServlet {
             account.setCountry(request.getParameter("country"));
             account.setLanguagePreference(request.getParameter("languagePreference"));
             account.setFavouriteCategoryId(request.getParameter("favouriteCategoryId"));
-//        if (request.getParameter("listoption").equals("1"))
-//            account.setListOption(true);
-//        else account.setListOption(false);
-//        if (request.getParameter("banneroption").equals("1"))
-//            account.setBannerOption(true);
-//        else account.setBannerOption(false);
+            if (request.getParameter("listoption") != null)
+                account.setListOption(true);
+            else account.setListOption(false);
+            if (request.getParameter("banneroption") != null)
+                account.setBannerOption(true);
+            else account.setBannerOption(false);
         }
         accountService = new AccountService();
 

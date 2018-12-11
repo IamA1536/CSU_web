@@ -1,6 +1,8 @@
 package com.a.JPetStore.web.servlets;
 
 import com.a.JPetStore.domain.account.Account;
+import com.a.JPetStore.domain.carts.Cart;
+import com.a.JPetStore.domain.orders.Order;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +19,12 @@ public class NewOrderFormServlet extends HttpServlet {
 
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
     private static final String NEWOEDERFORM = "/WEB-INF/jsp/order/NewOrderForm.jsp";
+    private static final String CONFIRMORDER = "/WEB-INF/jsp/order/ConfirmOrder.jsp";
+    private static final String SHIPPINGFORM = "/WEB-INF/jsp/order/ShippingForm.jsp";
+    private static final String VIEWORDER = "/WEB-INF/jsp/order/ViewOrder.jsp";
     private Account account;
+    private Order order;
+    private Cart cart;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,13 +35,23 @@ public class NewOrderFormServlet extends HttpServlet {
         HttpSession session = request.getSession();
         account = (Account) session.getAttribute("account");
         session.setAttribute("account", account);
+        cart = (Cart) session.getAttribute("cart");
+
         if (account == null) {
             String message = "Please sign in first!";
             session.setAttribute("message", message);
             request.getRequestDispatcher(ERROR).forward(request, response);
         } else {
+            order = new Order();
+            order.initOrder(account, cart);
 
-            request.getRequestDispatcher(NEWOEDERFORM).forward(request, response);
+            String shippingAddressRequired = request.getParameter("shippingAddressRequired");
+            if (shippingAddressRequired != null)
+                request.getRequestDispatcher(SHIPPINGFORM).forward(request, response);
+            else
+                request.getRequestDispatcher(VIEWORDER).forward(request, response);
+
+
         }
 
     }

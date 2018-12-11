@@ -79,7 +79,7 @@
         </form>
 
         <c:if test="${sessionScope.cart.numberOfItems > 0}">
-            <a class="Button" href="neworderform?account=${sessionScope.account}">
+            <a class="Button" href="neworderform?cart=${sessionScope.cart}&account=${sessionScope.account}&">
                 Proceed to Checkout
             </a>
         </c:if>

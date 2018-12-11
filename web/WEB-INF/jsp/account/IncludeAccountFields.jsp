@@ -94,10 +94,10 @@
         <td>Enable MyBanner</td>
         <td>
             <c:if test="${sessionScope.account.bannerOption != null}">
-                <input type="checkbox" name="banneroption" value="1"/>
+                <input type="checkbox" name="banneroption" value="true"/>
             </c:if>
             <c:if test="!${sessionScope.account.bannerOption == null}">
-                <input type="checkbox" name="banneroption" value="0"/>
+                <input type="checkbox" name="banneroption" value="true"/>
             </c:if>
         </td>
     </tr>

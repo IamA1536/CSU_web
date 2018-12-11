@@ -56,6 +56,10 @@
         <servlet-name>EditAccountFormServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.EditAccountFormServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VOrderServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.VOrderServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -104,5 +108,9 @@
     <servlet-mapping>
         <servlet-name>EditAccountFormServlet</servlet-name>
         <url-pattern>/editaccountform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VOrderServlet</servlet-name>
+        <url-pattern>/vorder</url-pattern>
     </servlet-mapping>
 </web-app>
