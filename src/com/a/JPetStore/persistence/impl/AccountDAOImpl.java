@@ -139,8 +139,8 @@ public class AccountDAOImpl implements AccountDAO {
     public void insertSignon(Account account) throws Exception {
         Connection connection = DBUtil.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SIGNON);
-        preparedStatement.setString(2, account.getUsername());
         preparedStatement.setString(1, account.getPassword());
+        preparedStatement.setString(2, account.getUsername());
         preparedStatement.execute();
 
 

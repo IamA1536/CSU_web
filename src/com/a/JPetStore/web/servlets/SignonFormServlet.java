@@ -36,8 +36,17 @@ public class SignonFormServlet extends HttpServlet {
         String password = request.getParameter("password");
         account = (Account) session.getAttribute("account");
         if (username == null || password == null) {
-                request.getRequestDispatcher(SIGNON).forward(request, response);
+            request.getRequestDispatcher(SIGNON).forward(request, response);
         } else {
+            String imageText = request.getParameter("image");
+            // Í¼Æ¬µÄÑéÖ¤Âë
+            String text = (String) request.getSession().getAttribute("text");
+
+            if (!text.equalsIgnoreCase(imageText)) {
+                request.setAttribute("imageMess", "Wrong verify code!");
+                request.getRequestDispatcher(SIGNON).forward(request, response);
+                return;
+            }
             try {
                 account = accountService.getAccount(username, password);
                 if (account == null) {

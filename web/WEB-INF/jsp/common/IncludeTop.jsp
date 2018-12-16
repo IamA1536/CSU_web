@@ -39,14 +39,16 @@
 
     <div id="Menu">
         <div id="MenuContent">
-            <a href="vcart&account=${sessionScope.account}"><img align="middle" name="img_cart" src="img/cart.gif"/></a>
+            <a href="vcart?account=${sessionScope.account}">
+                <img align="middle" name="img_cart" src="img/cart.gif"/>
+            </a>
             <img align="middle" src="img/separator.gif"/>
 
             <c:if test="${sessionScope.account == null}">
                 <a href="signonform">Sign In</a>
             </c:if>
             <c:if test="${sessionScope.account != null}">
-                <a href="#">Sign Out</a>
+                <a href="signout">Sign Out</a>
                 <img align="middle" src="img/separator.gif"/>
                 <a href="editaccountform?account=${sessionScope.account}">${sessionScope.account.username}'s
                     account</a>

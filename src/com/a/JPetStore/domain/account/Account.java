@@ -23,7 +23,7 @@ public class Account implements Serializable {
     private String languagePreference;
     private boolean listOption;
     private boolean bannerOption;
-    private String bannerName;
+    private String bannerName = "<image src=\"img/banner_cats.gif\">";
 
     public String getUsername() {
         return username;

@@ -124,22 +124,24 @@ public class OrderDAOImpl implements OrderDAO {
         preparedStatement.setString(6, order.getShipCity());
         preparedStatement.setString(7, order.getShipState());
         preparedStatement.setString(8, order.getShipZip());
-        preparedStatement.setString(9, order.getBillAddress1());
-        preparedStatement.setString(10, order.getBillAddress2());
-        preparedStatement.setString(11, order.getBillCity());
-        preparedStatement.setString(12, order.getBillState());
-        preparedStatement.setString(13, order.getBillZip());
-        preparedStatement.setString(14, order.getBillCountry());
-        preparedStatement.setString(15, order.getCourier());
-        preparedStatement.setBigDecimal(16, order.getTotalPrice());
-        preparedStatement.setString(17, order.getBillToFirstName());
-        preparedStatement.setString(18, order.getBillToLastName());
-        preparedStatement.setString(19, order.getShipToFirstName());
-        preparedStatement.setString(20, order.getShipToLastName());
-        preparedStatement.setString(21, order.getCreditCard());
-        preparedStatement.setString(22, order.getExpiryDate());
-        preparedStatement.setString(23, order.getCardType());
-        preparedStatement.setString(24, order.getLocale());
+        preparedStatement.setString(9,order.getShipCountry());
+        preparedStatement.setString(10, order.getBillAddress1());
+        preparedStatement.setString(11, order.getBillAddress2());
+        preparedStatement.setString(12, order.getBillCity());
+        preparedStatement.setString(13, order.getBillState());
+        preparedStatement.setString(14, order.getBillZip());
+        preparedStatement.setString(15, order.getBillCountry());
+        preparedStatement.setString(16, order.getCourier());
+        preparedStatement.setBigDecimal(17, order.getTotalPrice());
+        preparedStatement.setString(18, order.getBillToFirstName());
+        preparedStatement.setString(19, order.getBillToLastName());
+        preparedStatement.setString(20, order.getShipToFirstName());
+        preparedStatement.setString(21, order.getShipToLastName());
+        preparedStatement.setString(22, order.getCreditCard());
+        preparedStatement.setString(23, order.getExpiryDate());
+        preparedStatement.setString(24, order.getCardType());
+        preparedStatement.setString(25, order.getLocale());
+
 
         preparedStatement.execute();
 
@@ -150,7 +152,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public void insertOrderStatus(Order order) throws Exception {
         Connection connection = DBUtil.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER);
+        PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER_STATUS);
 
         preparedStatement.setInt(1, order.getOrderId());
         preparedStatement.setInt(2, order.getOrderId());

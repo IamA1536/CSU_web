@@ -90,9 +90,7 @@
 
     </table>
 
-
-    <a href="#">
-        <c:param name="confirmed" value="true"/>
+    <a class="Button" href="vorder?account=${sessionScope.account}&order=${sessionScope.order}">
         Confirm
     </a>
 </div>

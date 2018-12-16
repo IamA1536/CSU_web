@@ -2,7 +2,6 @@ package com.a.JPetStore.web.servlets;
 
 import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.orders.Order;
-import com.a.JPetStore.serivce.LogSerive;
 import com.a.JPetStore.serivce.OrderSerive;
 
 import javax.servlet.ServletException;
@@ -11,17 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author A
- * Created by IamA#1536 on 2018/12/11 17:58
+ * Created by IamA#1536 on 2018/12/12 12:26
  */
-public class VOrderServlet extends HttpServlet {
-    private static final String V_ORDER = "/WEB-INF/jsp/order/ViewOrder.jsp";
+public class ListOrdersServlet extends HttpServlet {
+    private static final String LISTORDER = "/WEB-INF/jsp/order/ListOrders.jsp";
     private Account account;
-    private Order order;
+    //    private Order order;
     private OrderSerive orderSerive;
-
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -30,24 +30,19 @@ public class VOrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         account = (Account) session.getAttribute("account");
-        order = (Order) session.getAttribute("order");
+//        order = (Order) session.getAttribute("order");
         session.setAttribute("account", account);
-        session.setAttribute("order", order);
-
         orderSerive = new OrderSerive();
+//        order = new Order();
         try {
-            orderSerive.insertOrder(order);
+            List<Order> orderList = new ArrayList<Order>();
+            orderList = orderSerive.getOrdersByUsername(account.getUsername());
+            session.setAttribute("orderList", orderList);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LogSerive logSerive = new LogSerive();
-        String str = "Make a order:" + order.getOrderId();
-        try {
-            logSerive.InsertLog(account, str);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        session.setAttribute("order", order);
 
-        request.getRequestDispatcher(V_ORDER).forward(request, response);
+        request.getRequestDispatcher(LISTORDER).forward(request, response);
     }
 }

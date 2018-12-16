@@ -119,7 +119,6 @@
                     <c:forEach var="lineItem" items="${sessionScope.order.lineItems}">
                         <tr>
                             <td>
-                                    <%--<c:param name="itemId" value="${lineItem.item.itemId}"/>--%>
                                 <a href="vitem?itemId=${lineItem.item.itemId}&account=${sessionScope.account}&productId= ${lineItem.item.product.productId}">
                                         ${lineItem.item.itemId}
                                 </a>

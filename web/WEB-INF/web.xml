@@ -64,6 +64,27 @@
         <servlet-name>ShippingFormServlet</servlet-name>
         <servlet-class>com.a.JPetStore.web.servlets.ShippingFormServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConfirmOrderServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.ConfirmOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListOrdersServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.ListOrdersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewAccountFormServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.NewAccountFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignOutServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.SignOutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerifyCodeServlet</servlet-name>
+        <servlet-class>com.a.JPetStore.web.servlets.VerifyCodeServlet</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -121,4 +142,42 @@
         <servlet-name>ShippingFormServlet</servlet-name>
         <url-pattern>/shippingform</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmOrderServlet</servlet-name>
+        <url-pattern>/confirmorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListOrdersServlet</servlet-name>
+        <url-pattern>/listorders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewAccountFormServlet</servlet-name>
+        <url-pattern>/newaccountform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignOutServlet</servlet-name>
+        <url-pattern>/signout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyCodeServlet</servlet-name>
+        <url-pattern>/verifycode</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
+        <filter-name>LogVItemFilter</filter-name>
+        <filter-class>com.a.JPetStore.web.filter.LogVItemFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogVItemFilter</filter-name>
+        <url-pattern>/vitem</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>LogAddCartFilter</filter-name>
+        <filter-class>com.a.JPetStore.web.filter.LogAddCartFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogAddCartFilter</filter-name>
+        <url-pattern>/AddItemToCart</url-pattern>
+    </filter-mapping>
 </web-app>

@@ -1,4 +1,4 @@
-package com.a.JPetStore.web.servlets;
+package com.a.JPetStore.web.filter;
 
 import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.domain.carts.Cart;
@@ -6,18 +6,16 @@ import com.a.JPetStore.domain.object.Item;
 import com.a.JPetStore.serivce.CatalogSerivce;
 import com.a.JPetStore.serivce.LogSerive;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
  * @author A
- * Created by IamA#1536 on 2018/12/7 16:53
+ * Created by IamA#1536 on 2018/12/16 10:26
  */
-public class AddItemToCartServlet extends HttpServlet {
+public class LogAddCartFilter implements Filter {
 
     private static final String V_CART = "/WEB-INF/jsp/cart/Cart.jsp";
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
@@ -29,13 +27,21 @@ public class AddItemToCartServlet extends HttpServlet {
 
     private Account account;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    public void destroy() {
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         workingItemId = request.getParameter("workingItemId");
-        HttpSession session = request.getSession();
+        HttpSession session = ((HttpServletRequest)request).getSession();
         cart = (Cart) session.getAttribute("cart");
         account = (Account) session.getAttribute("account");
         session.setAttribute("account", account);
@@ -67,16 +73,14 @@ public class AddItemToCartServlet extends HttpServlet {
                 cart.addItem(item, isInStock);
                 session.setAttribute("cart", cart);
 
-//                LogSerive logSerive = new LogSerive();
-//                String str = "Adds " + item.getItemId() + " to cart";
-//                logSerive.InsertLog(account, str);
+                LogSerive logSerive = new LogSerive();
+                String str = "Adds " + item.getItemId() + " to cart";
+                logSerive.InsertLog(account, str);
 
                 request.getRequestDispatcher(V_CART).forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 }

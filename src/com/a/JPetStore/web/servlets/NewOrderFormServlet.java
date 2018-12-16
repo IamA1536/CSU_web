@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * @author A
@@ -20,7 +21,7 @@ public class NewOrderFormServlet extends HttpServlet {
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
     private static final String NEWOEDERFORM = "/WEB-INF/jsp/order/NewOrderForm.jsp";
     private static final String SHIPPINGFORM = "/WEB-INF/jsp/order/ShippingForm.jsp";
-    private static final String VIEWORDER = "/WEB-INF/jsp/order/ViewOrder.jsp";
+    private static final String CONFIRMORDER = "/WEB-INF/jsp/order/ConfirmOrder.jsp";
     private Account account;
     private Order order;
     private Cart cart;
@@ -43,10 +44,13 @@ public class NewOrderFormServlet extends HttpServlet {
         } else if (request.getParameter("creditcard") == null) {
             order = new Order();
             order.initOrder(account, cart);
+            Calendar c = Calendar.getInstance();
+            String str = String.valueOf(c.get(Calendar.MONTH)) + String.valueOf(c.get(Calendar.DATE)) + String.valueOf(c.get(Calendar.HOUR_OF_DAY)) + String.valueOf(c.get(Calendar.MINUTE)) + String.valueOf(c.get(Calendar.SECOND));
+            int orderId = Integer.valueOf(str).intValue();
+            order.setOrderId(orderId);
             session.setAttribute("order", order);
             request.getRequestDispatcher(NEWOEDERFORM).forward(request, response);
         } else {
-            order.initOrder(account, cart);
             order.setCreditCard(request.getParameter("creditcard"));
             order.setExpiryDate(request.getParameter("expirydate"));
             order.setCardType(request.getParameter("cardtype"));
@@ -55,7 +59,7 @@ public class NewOrderFormServlet extends HttpServlet {
             if (shippingAddressRequired != null)
                 request.getRequestDispatcher(SHIPPINGFORM).forward(request, response);
             else
-                request.getRequestDispatcher(VIEWORDER).forward(request, response);
+                request.getRequestDispatcher(CONFIRMORDER).forward(request, response);
         }
 
 

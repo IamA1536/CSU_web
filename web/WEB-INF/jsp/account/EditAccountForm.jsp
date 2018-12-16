@@ -21,7 +21,7 @@
         <%@ include file="IncludeAccountFields.jsp" %>
         <input type="submit" name="editAccount" value="Save Account Information"/>
     </form>
-    <a href="#">My Orders</a>
+    <a href="listorders?account=${sessionScope.account}">My Orders</a>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp" %>

@@ -35,14 +35,15 @@ public class OrderSerive {
     }
 
     public void insertOrder(Order order) throws Exception {
-        order.setOrderId(getNextId("ordernum"));
         for (int i = 0; i < order.getLineItems().size(); i++) {
             LineItem lineItem = (LineItem) order.getLineItems().get(i);
             String itemId = lineItem.getItemId();
+
             Integer increment = new Integer(lineItem.getQuantity());
             Map<String, Object> param = new HashMap<String, Object>(2);
             param.put("itemId", itemId);
             param.put("increment", increment);
+            System.out.println(increment);
             itemDAO.updateInventoryQuantity(param);
         }
 
