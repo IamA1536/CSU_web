@@ -7,6 +7,7 @@ import com.a.JPetStore.serivce.CatalogSerivce;
 import com.a.JPetStore.serivce.LogSerive;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.io.IOException;
  * @author A
  * Created by IamA#1536 on 2018/12/7 16:53
  */
+@WebServlet(name = "AddItemToCartServlet", urlPatterns = {"/AddItemToCart"})
 public class AddItemToCartServlet extends HttpServlet {
 
     private static final String V_CART = "/WEB-INF/jsp/cart/Cart.jsp";

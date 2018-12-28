@@ -6,22 +6,22 @@
         <table>
             <tr>
                 <td>User ID:</td>
-                <td>${sessionScope.username}</td>
+                <td>${sessionScope.account.username}</td>
             </tr>
             <tr>
                 <td>New password:</td>
-                <td><input type="text" name="password"/></td>
+                <td><input id="Pw" type="password" name="password"/></td>
             </tr>
             <tr>
                 <td>Repeat password:</td>
-                <td><input type="text" name="repeatedPassword"/></td>
-                <td>${sessionScope.error}</td>
+                <td><input id="RePw" type="password" name="repeatedPassword"/></td>
             </tr>
+            <p id="Error"></p>
         </table>
         <%@ include file="IncludeAccountFields.jsp" %>
-        <input type="submit" name="editAccount" value="Save Account Information"/>
+        <input id="Sub" type="submit" name="editAccount" value="Save Account Information"/>
     </form>
     <a href="listorders?account=${sessionScope.account}">My Orders</a>
 </div>
-
+<script src="js/EditAccount.js"></script>
 <%@ include file="../common/IncludeBottom.jsp" %>

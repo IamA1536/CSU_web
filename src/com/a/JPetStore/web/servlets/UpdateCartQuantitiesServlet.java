@@ -5,6 +5,7 @@ import com.a.JPetStore.domain.carts.Cart;
 import com.a.JPetStore.domain.carts.CartItem;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.util.Iterator;
  * @author A
  * Created by IamA#1536 on 2018/12/7 23:50
  */
+@WebServlet(name = "UpdateCartQuantitiesServlet", urlPatterns = {"/updatecartquantities"})
 public class UpdateCartQuantitiesServlet extends HttpServlet {
 
     private static final String V_CART = "/WEB-INF/jsp/cart/Cart.jsp";

@@ -5,6 +5,7 @@ import com.a.JPetStore.serivce.AccountService;
 import com.a.JPetStore.serivce.CatalogSerivce;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import java.io.IOException;
  * @author A
  * Created by IamA#1536 on 2018/12/9 22:24
  */
+@WebServlet(name = "SignonFormServlet", urlPatterns = {"/signonform"})
 public class SignonFormServlet extends HttpServlet {
 
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";

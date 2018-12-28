@@ -12,8 +12,8 @@
         <td><input type="text" name="lastName" value="${sessionScope.account.lastName}"/></td>
     </tr>
     <tr>
-        <td>Email:</td>
-        <td><input type="text" size="40" name="email" value="${sessionScope.account.email}"/></td>
+        <td>Email*:</td>
+        <td><input id="Email" type="text" size="40" name="email" value="${sessionScope.account.email}"/></td>
     </tr>
     <tr>
         <td>Phone:</td>

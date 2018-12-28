@@ -6,6 +6,7 @@ import com.a.JPetStore.domain.object.Product;
 import com.a.JPetStore.serivce.CatalogSerivce;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.io.IOException;
  * @author A
  * Created by IamA#1536 on 2018/12/7 10:19
  */
+@WebServlet(name = "VItemServlet", urlPatterns = {"/vitem"})
 public class VItemServlet extends HttpServlet {
     private static final String V_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
     private String itemId;
@@ -41,10 +43,6 @@ public class VItemServlet extends HttpServlet {
 
             account = (Account) session.getAttribute("account");
             session.setAttribute("account", account);
-
-//            LogSerive logSerive = new LogSerive();
-//            String str = "Views " + item.getItemId();
-//            logSerive.InsertLog(account, str);
 
             request.getRequestDispatcher(V_ITEM).forward(request, response);
 

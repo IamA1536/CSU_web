@@ -7,6 +7,7 @@ import com.a.JPetStore.serivce.CatalogSerivce;
 import com.a.JPetStore.serivce.LogSerive;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.io.IOException;
  * @author A
  * Created by IamA#1536 on 2018/12/16 9:58
  */
+@WebFilter(filterName = "LogVItemFilter", urlPatterns = {"/vitem"})
 public class LogVItemFilter implements Filter {
     private static final String V_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
     private String itemId;

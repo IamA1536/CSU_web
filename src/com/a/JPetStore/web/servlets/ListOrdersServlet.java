@@ -5,6 +5,7 @@ import com.a.JPetStore.domain.orders.Order;
 import com.a.JPetStore.serivce.OrderSerive;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.util.List;
  * @author A
  * Created by IamA#1536 on 2018/12/12 12:26
  */
+@WebServlet(name = "ListOrdersServlet", urlPatterns = {"/listorders"})
 public class ListOrdersServlet extends HttpServlet {
     private static final String LISTORDER = "/WEB-INF/jsp/order/ListOrders.jsp";
     private Account account;

@@ -5,6 +5,7 @@ import com.a.JPetStore.domain.carts.Cart;
 import com.a.JPetStore.domain.orders.Order;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.util.Calendar;
  * @author A
  * Created by IamA#1536 on 2018/12/10 14:23
  */
+@WebServlet(name = "NewOrderFormServlet", urlPatterns = {"/neworderform"})
 public class NewOrderFormServlet extends HttpServlet {
 
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";

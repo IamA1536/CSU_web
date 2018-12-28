@@ -4,6 +4,7 @@ import com.a.JPetStore.domain.account.Account;
 import com.a.JPetStore.serivce.AccountService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import java.io.IOException;
  * @author A
  * Created by IamA#1536 on 2018/12/10 22:26
  */
+@WebServlet(name = "EditAccountFormServlet", urlPatterns = {"/editaccountform"})
 public class EditAccountFormServlet extends HttpServlet {
     private static final String NEW_ACCOUNT = "/WEB-INF/jsp/account/NewAccountForm.jsp";
     private static final String EDIT_ACCOUNT = "/WEB-INF/jsp/account/EditAccountForm.jsp";
@@ -32,21 +34,6 @@ public class EditAccountFormServlet extends HttpServlet {
         HttpSession session = request.getSession();
         account = (Account) session.getAttribute("account");
         session.setAttribute("account", account);
-
-        String password = request.getParameter("password");
-        if (password != null) {
-            String repeatedPassword = request.getParameter("repeatedPassword");
-            if (!password.equals(repeatedPassword)) {
-                String error = "Entered passwords differ!";
-                session.setAttribute("error", error);
-                request.getRequestDispatcher(EDIT_ACCOUNT).forward(request, response);
-                return;
-            } else {
-                account.setPassword(password);
-            }
-        }
-        String error = "";
-        session.setAttribute("error", error);
         if (request.getParameter("email") != null) {
             account.setFirstName(request.getParameter("firstName"));
             account.setLastName(request.getParameter("lastName"));

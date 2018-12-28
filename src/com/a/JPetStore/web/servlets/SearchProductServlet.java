@@ -5,6 +5,7 @@ import com.a.JPetStore.domain.object.Product;
 import com.a.JPetStore.serivce.CatalogSerivce;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author A
  * Created by IamA#1536 on 2018/12/7 9:38
  */
+@WebServlet(name = "SearchProductServlet", urlPatterns = {"/search"})
 public class SearchProductServlet extends HttpServlet {
     private String keyword;
     private Account account;

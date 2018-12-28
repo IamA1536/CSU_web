@@ -6,6 +6,7 @@ import com.a.JPetStore.serivce.LogSerive;
 import com.a.JPetStore.serivce.OrderSerive;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.io.IOException;
  * @author A
  * Created by IamA#1536 on 2018/12/11 17:58
  */
+@WebServlet(name = "VOrderServlet", urlPatterns = {"/vorder"})
 public class VOrderServlet extends HttpServlet {
     private static final String V_ORDER = "/WEB-INF/jsp/order/ViewOrder.jsp";
     private Account account;
