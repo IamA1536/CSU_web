@@ -37,13 +37,22 @@ public class UpdateCartQuantitiesServlet extends HttpServlet {
 
         Iterator<CartItem> cartItemIterator = cart.getAllCartItems();
 
+        String temp = null;
         while (cartItemIterator.hasNext()) {
             CartItem cartItem = (CartItem) cartItemIterator.next();
             String itemId = cartItem.getItem().getItemId();
-            int quantity = Integer.parseInt((String) request.getParameter(itemId));
-            if (quantity > 0)
-                cart.setQuantityByItemId(itemId, quantity);
+            try {
+                int quantity = Integer.parseInt((String) request.getParameter(itemId));
+                if (quantity > 0)
+                    cart.setQuantityByItemId(itemId, quantity);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                temp = itemId;
+            }
         }
+
+        if (temp != null)
+            cart.removeItemById(temp);
 
         request.getRequestDispatcher(V_CART).forward(request, response);
     }

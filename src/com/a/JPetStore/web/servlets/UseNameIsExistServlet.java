@@ -1,11 +1,14 @@
 package com.a.JPetStore.web.servlets;
 
+import com.a.JPetStore.serivce.AccountService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author A
@@ -19,6 +22,25 @@ public class UseNameIsExistServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        AccountService accountService = new AccountService();
 
+//        response.setContentType("text/xml");
+        PrintWriter out = response.getWriter();
+        System.out.println(username);
+        try {
+            if (accountService.getAccount(username) == null) {
+//                out.print("<msg>NotExist</msg>");
+                out.print("NotExist");
+            } else {
+//                out.print("<msg>Exist</msg>");
+                out.print("Exist");
+            }
+
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

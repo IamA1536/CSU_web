@@ -6,30 +6,51 @@
         <table>
             <tr>
                 <td>User ID*:</td>
-                <td><input id="UserName" type="text" name="username"/></td>
+                <td><input id="UserName" type="text" name="username"/>
+                </td>
+                <td style="">
+                    <font color="#FF0000">
+                        <small id="UserError">
+                        </small>
+                    </font>
+                </td>
             </tr>
             <tr>
                 <td>New password*:</td>
-                <td><input id="Pw" type="password" name="password"/></td>
+                <td><input id="Pw" type="password" name="password"/>
+                </td>
+                <td>
+                    <font color="#FF0000">
+                        <small id="PwError">
+                        </small>
+                    </font>
+                </td>
             </tr>
             <tr>
                 <td>Repeat password*:</td>
-                <td><input id="RepeatPw" type="password"/></td>
+                <td><input id="RepeatPw" type="password"/>
+                </td>
+                <td>
+                    <font color="#FF0000">
+                        <small id="RepeatPwError">
+                        </small>
+                    </font>
+                </td>
             </tr>
         </table>
         <%@ include file="IncludeAccountFields.jsp" %>
         <tr>
             <td>
-                <small>* is required</small>
+                <div id="warning" class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+                    <p>
+                        <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                        <strong>*</strong> is required
+                    </p>
+                </div>
+
             </td>
         </tr>
-        <font color="#FF0000">
-            <small>
-                <p id="Error">
 
-                </p>
-            </small>
-        </font>
         <input id="SubNew" type="submit" name="newAccount" value="Save Account Information" style="visibility: hidden"/>
         <script src="js/SignForm.js"></script>
     </form>

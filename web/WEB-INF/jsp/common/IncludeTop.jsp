@@ -14,7 +14,7 @@
 <head>
     <link rel="StyleSheet" href="css/jpetstore.css" type="text/css"
           media="screen"/>
-
+    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css">
     <meta name="generator"
           content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org"/>
     <title>JPetStore Demo</title>
@@ -25,6 +25,10 @@
     <meta http-equiv="expires" content="0"/>
     <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
     <meta http-equiv="Pragma" content="no-cache"/>
+    <script src="js/jQuery.js"></script>
+    <script src="js/Search.js"></script>
+    <script src="js/jquery-ui.js"></script>
+
 </head>
 
 <body>
@@ -61,7 +65,7 @@
     <div id="Search">
         <div id="SearchContent">
             <form action="search" method="post">
-                <input type="text" name="keyword" size="14"/>
+                <input id="SearchInput" type="text" name="keyword" size="14"/>
                 <input type="submit" name="searchProducts" value="Search"/>
             </form>
         </div>

@@ -6,44 +6,66 @@
         <td>
             <input type="text" name="firstName" value="${sessionScope.account.firstName}"/>
         </td>
+        <td></td>
     </tr>
     <tr>
         <td>Last name:</td>
         <td><input type="text" name="lastName" value="${sessionScope.account.lastName}"/></td>
+        <td></td>
     </tr>
     <tr>
         <td>Email*:</td>
-        <td><input id="Email" type="text" size="40" name="email" value="${sessionScope.account.email}"/></td>
+        <td><input id="Email" type="text" size="40" name="email" value="${sessionScope.account.email}"/>
+            <%--<font color="#FF0000">--%>
+            <%--<small>--%>
+            <%--<p id="EmailError"></p>--%>
+            <%--</small>--%>
+            <%--</font>--%>
+        </td>
+        <td>
+            <font color="#FF0000">
+                <small id="EmailError">
+                    <%--<p id="EmailError"></p>--%>
+                </small>
+            </font>
+        </td>
     </tr>
     <tr>
         <td>Phone:</td>
         <td><input type="text" name="phone" value="${sessionScope.account.phone}"/></td>
+        <td></td>
     </tr>
     <tr>
         <td>Address 1:</td>
         <td><input type="text" size="40" name="address1" value="${sessionScope.account.address1}"/></td>
+        <td></td>
     </tr>
     <tr>
         <td>Address 2:</td>
         <td><input type="text" size="40" name="address2" value="${sessionScope.account.address2}"/></td>
+        <td></td>
     </tr>
     <tr>
         <td>City:</td>
         <td><input type="text" name="city" value="${sessionScope.account.city}"/></td>
+        <td></td>
     </tr>
     <tr>
         <td>State:</td>
         <td><input type="text" size="4" name="state" value="${sessionScope.account.state}"/></td>
+        <td></td>
     </tr>
     <tr>
         <td>Zip:</td>
         <td><input type="text" size="10" name="zip" value="${sessionScope.account.zip}"/></td>
+        <td></td>
     </tr>
     <tr>
         <td>Country:</td>
         <td>
             <input type="text" size="15" name="country" value="${sessionScope.account.country}"/>
         </td>
+        <td></td>
     </tr>
 </table>
 
