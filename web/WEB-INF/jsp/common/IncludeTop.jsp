@@ -13,13 +13,11 @@
 
 <head>
     <link rel="stylesheet" href="css/jpetstore.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css"/>
+    <link rel="stylesheet" href="css/suspensionwindow.css" type="text/css"/>
 
-    <link rel="stylesheet" href="css/suspensionwindow.css" type="text/css">
-
-    <meta name="generator"
-          content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org"/>
-    <title>JPetStore Demo</title>
+    <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org"/>
+    <title>JPetStore By A</title>
     <meta content="text/html; charset=windows-1252"
           http-equiv="Content-Type"/>
     <meta http-equiv="Cache-Control" content="max-age=0"/>

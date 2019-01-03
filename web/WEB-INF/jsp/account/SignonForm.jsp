@@ -17,8 +17,8 @@
                     <%--<img src="img/vc.gif">--%>
                     <img src="verifycode">
                     <%--<br/>--%>
-                    <a class="button" id="btn" href="">
-                        change to another one
+                    <a id="btn" href="">
+                        <small>change to another one</small>
                     </a>
                     <font color="red">${requestScope.imageMess}</font>
                     <br/>
@@ -29,7 +29,7 @@
         <input type="submit" name="signon" value="Login"/>
     </form>
 
-    Need a user name and password?
+    Need a username and password?
     <a href="newaccountform">
         Register Now!
     </a>

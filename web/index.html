@@ -1,15 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>PetStore</title>
-    <link rel="StyleSheet" href="css/jpetstore.css" type="text/css" media="screen"/>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Custom Theme files -->
+    <link href="css/style.css" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="css/jquery.countdown.css"/>
+
+    <!-- font-awesome-icons -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+
+    <!--fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i"
+          rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Oxygen:400,700" rel="stylesheet">
+    <!--//fonts-->
 </head>
+
 <body>
-<div id="Content">
-    <h2>Welcome to CSUPetStore</h2>
-    <p><a href="main">Enter</a></p>
-    <p><sub>Copyright CSU_A</sub></p>
+<!--background-->
+<div class="bg agile">
+    <div class="container">
+        <h1>EXCELLENT PETSTORE OPENING</h1>
+        <p>get ready to experience the awesomeness</p>
+        <p>you wanna get more information please Subscribe below</p>
+        <!--timer-->
+        <div class="timer_wrap">
+            <div id="counter">
+
+            </div>
+        </div>
+        <!--//timer-->
+        <!--newsletter-->
+        <div class="newsletter">
+            <form action="index" method="post">
+                <input type="submit" value="Enjoy it"/>
+                <h2>Subscribe Now</h2>
+            </form>
+        </div>
+        <!--//newsletter-->
+        <!--copyright-->
+        <div class="copy w3ls">
+            <ul class="w3ls-icons w3l">
+                <li><a href="https://www.facebook.com" class="w3ls-facebook"><span class="fa fa-facebook"
+                                                                                   aria-hidden="true"></span></a></li>
+                <li><a href="https://www.twitter.com" class="w3ls-twitter"><span class="fa fa-twitter"
+                                                                                 aria-hidden="true"></span></a></li>
+                <li><a href="https://plus.google.com" class="w3ls-google"><span class="fa fa-google-plus"
+                                                                                aria-hidden="true"></span></a></li>
+                <li><a href="https://www.youtube.com" class="w3ls-youtube"><span class="fa fa-youtube"
+                                                                                 aria-hidden="true"></span></a></li>
+                <li><a href="https://weixin.qq.com" class="w3ls-wechat"><span class="fa fa-wechat"
+                                                                              aria-hidden="true"></span></a></li>
+                <li><a href="https://im.qq.com" class="w3ls-qq"><span class="fa fa-qq" aria-hidden="true"></span></a>
+                </li>
+
+            </ul>
+            <p>Copyright &copy; 2019.A All rights reserved.</p>
+        </div>
+
+        <!--//copyright-->
+    </div>
 </div>
+<!--//background-->
+<!--scripts-->
+<script src="js/jquery.countdown.js"></script>
+<script src="js/index.js"></script>
+<!-- without script.js file code
+<script>
+jQuery(document).ready(function($){
+$('.demo1').dsCountDown({
+endDate: new Date("December 24, 2017 23:59:00")
+});
+});
+</script> -->
+<!--//scripts-->
 </body>
-</html>
+</html>	
