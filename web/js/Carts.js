@@ -3,7 +3,6 @@ $(document).ready(function () {
     prepared()
 })
 
-
 function prepared() {
     $("#quantity").on("blur", function () {
         $("form").submit()
@@ -41,7 +40,7 @@ function changeStatus() {
         var $r = $("#cancel").parent()
         $r.animate({
             opacity: 0.0,
-            paddingLeft: '-=80'
+            paddingLeft: '+=80'
         }, 500, function () {
             $(this).remove()
             $("#Remove").hide(1000, function () {

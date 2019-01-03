@@ -22,7 +22,7 @@ public class NewOrderFormServlet extends HttpServlet {
 
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
     private static final String NEWOEDERFORM = "/WEB-INF/jsp/order/NewOrderForm.jsp";
-    private static final String SHIPPINGFORM = "/WEB-INF/jsp/order/ShippingForm.jsp";
+    //    private static final String SHIPPINGFORM = "/WEB-INF/jsp/order/ShippingForm.jsp";
     private static final String CONFIRMORDER = "/WEB-INF/jsp/order/ConfirmOrder.jsp";
     private Account account;
     private Order order;
@@ -56,12 +56,21 @@ public class NewOrderFormServlet extends HttpServlet {
             order.setCreditCard(request.getParameter("creditcard"));
             order.setExpiryDate(request.getParameter("expirydate"));
             order.setCardType(request.getParameter("cardtype"));
+            order.setShipToFirstName(request.getParameter("shiptofirstName"));
+            order.setShipToLastName(request.getParameter("shiptolastName"));
+            order.setShipAddress1(request.getParameter("shipaddress1"));
+            order.setShipAddress2(request.getParameter("shipaddress2"));
+            order.setShipCity(request.getParameter("shipcity"));
+            order.setShipState(request.getParameter("shipstate"));
+            order.setShipZip(request.getParameter("shipzip"));
+            order.setShipCountry(request.getParameter("shipcountry"));
             session.setAttribute("order", order);
-            String shippingAddressRequired = request.getParameter("shippingAddressRequired");
-            if (shippingAddressRequired != null)
-                request.getRequestDispatcher(SHIPPINGFORM).forward(request, response);
-            else
-                request.getRequestDispatcher(CONFIRMORDER).forward(request, response);
+
+//            String shippingAddressRequired = request.getParameter("shippingAddressRequired");
+//            if (shippingAddressRequired != null)
+//                request.getRequestDispatcher(SHIPPINGFORM).forward(request, response);
+//            else
+            request.getRequestDispatcher(CONFIRMORDER).forward(request, response);
         }
 
 

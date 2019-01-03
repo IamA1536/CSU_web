@@ -12,9 +12,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <link rel="StyleSheet" href="css/jpetstore.css" type="text/css"
-          media="screen"/>
+    <link rel="stylesheet" href="css/jpetstore.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="css/jquery-ui.css" type="text/css">
+
+    <link rel="stylesheet" href="css/suspensionwindow.css" type="text/css">
+
     <meta name="generator"
           content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org"/>
     <title>JPetStore Demo</title>
@@ -28,6 +30,7 @@
     <script src="js/jQuery.js"></script>
     <script src="js/Search.js"></script>
     <script src="js/jquery-ui.js"></script>
+
 
 </head>
 
