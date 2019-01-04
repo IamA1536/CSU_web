@@ -33,14 +33,13 @@ function removeChange() {
 
 function changeStatus() {
     $("#Remove").parent().after("<td hidden='hidden'><a id='cancel' class='Button'>cancel</a></td>")
-    $("#cancel").parent().show(2000, function () {
-
+    $("#cancel").parent().show(1500, function () {
     })
     $("#cancel").click(function () {
         var $r = $("#cancel").parent()
         $r.animate({
             opacity: 0.0,
-            paddingLeft: '+=80'
+            paddingLeft: '-=80'
         }, 500, function () {
             $(this).remove()
             $("#Remove").hide(1000, function () {
