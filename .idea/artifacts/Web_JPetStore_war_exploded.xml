@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Web_JPetStore:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/Web_JPetStore_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/JPetStore</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Web_JPetStore/web/Web" />
       <element id="directory" name="WEB-INF">
