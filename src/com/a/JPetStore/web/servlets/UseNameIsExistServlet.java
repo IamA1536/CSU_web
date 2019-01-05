@@ -25,15 +25,11 @@ public class UseNameIsExistServlet extends HttpServlet {
         String username = request.getParameter("username");
         AccountService accountService = new AccountService();
 
-//        response.setContentType("text/xml");
         PrintWriter out = response.getWriter();
-        System.out.println(username);
         try {
             if (accountService.getAccount(username) == null) {
-//                out.print("<msg>NotExist</msg>");
                 out.print("NotExist");
             } else {
-//                out.print("<msg>Exist</msg>");
                 out.print("Exist");
             }
 

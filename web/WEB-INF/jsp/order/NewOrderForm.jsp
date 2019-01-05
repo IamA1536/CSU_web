@@ -105,6 +105,8 @@
                 <td><input type="text" size="15" name="shipcountry" value="${sessionScope.account.country}"/></td>
             </tr>
         </table>
+
+        <div id="Separator">&nbsp;</div>
         <input name="newOrder" value="Continue" type="submit">
     </form>
     <script src="js/NewOrder.js"></script>

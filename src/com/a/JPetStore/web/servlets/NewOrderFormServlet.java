@@ -22,7 +22,6 @@ public class NewOrderFormServlet extends HttpServlet {
 
     private static final String ERROR = "/WEB-INF/jsp/common/Error.jsp";
     private static final String NEWOEDERFORM = "/WEB-INF/jsp/order/NewOrderForm.jsp";
-    //    private static final String SHIPPINGFORM = "/WEB-INF/jsp/order/ShippingForm.jsp";
     private static final String CONFIRMORDER = "/WEB-INF/jsp/order/ConfirmOrder.jsp";
     private Account account;
     private Order order;

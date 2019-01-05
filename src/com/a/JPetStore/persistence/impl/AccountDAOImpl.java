@@ -58,6 +58,8 @@ public class AccountDAOImpl implements AccountDAO {
         DBUtil.closeResultSet(resultSet);
         DBUtil.closePreparedstatement(preparedStatement);
         DBUtil.closeConnection(connection);
+        if (account.getUsername() == null)
+            account = null;
         return account;
     }
 

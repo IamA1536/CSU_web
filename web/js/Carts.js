@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // removeItem(e)
     prepared()
 })
 
@@ -8,7 +7,7 @@ function prepared() {
         $("form").submit()
     })
 
-    $("#Remove").hide()
+    $("#Remove").parent().hide()
     removeChange()
 }
 
@@ -25,7 +24,7 @@ function removeChange() {
 
     $r.mouseup(function () {
         clearTimeout(timeout)
-        $("#Remove").show(1000, function () {
+        $("#Remove").parent().show(1000, function () {
         })
         changeStatus()
     })
@@ -42,23 +41,8 @@ function changeStatus() {
             paddingLeft: '-=80'
         }, 500, function () {
             $(this).remove()
-            $("#Remove").hide(1000, function () {
+            $("#Remove").parent().hide(1000, function () {
             })
         })
     })
 }
-
-// function removeItem(e) {
-//     e.preventDefault()
-//     var $r = $("[name='remove']")
-//     $r.on('click', function () {
-//         var $p = $r.parents('tr')
-//         $p.animate({
-//             opacity: 0.0,
-//             paddingLeft: '+=80'
-//         }, 500, function () {
-//             $(this).remove()
-//         })
-//     })
-// }
-//
